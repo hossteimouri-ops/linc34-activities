@@ -1,128 +1,335 @@
-<!DOCTYPE html>
+<!-- IMPT-U-HC style: paste-ready body content is fine, but GitHub Pages needs full HTML -->
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLB 3/4 Reading – Future Study Goals</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #ffffff;
-  margin: 0;
-  padding: 20px;
-  line-height: 1.6;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-}
-
-h2 {
-  background: #e3f2fd;
-  padding: 12px;
-}
-
-.task {
-  margin-top: 25px;
-}
-
-select, textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 6px;
-  font-size: 1rem;
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LINC Activity – Instant Check + PDF Artifact</title>
 </head>
+<body style="margin:0; font-family: Arial, Helvetica, sans-serif; background:#ffffff; color:#111;">
 
-<body>
+  <div style="padding:18px 16px 12px; border-bottom:1px solid #e5e7eb; position:sticky; top:0; background:#fff; z-index:5;">
+    <h2 style="margin:0 0 6px; font-size:22px; color:#0b5ed7;">LINC Reading Practice (CLB 3/4)</h2>
+    <p style="margin:0; font-size:14px; color:#374151;">
+      Fill in your answers, press <b>Check</b>, then <b>Print / Save as PDF</b> for your artifact.
+    </p>
+  </div>
 
-<div class="container">
+  <div style="padding:14px 16px; max-width:920px; margin:0 auto;">
+    <!-- Student info -->
+    <div style="background:#f3f4f6; border:1px solid #e5e7eb; border-radius:14px; padding:14px; margin:0 0 14px;">
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:240px;">
+          <label style="font-size:13px; color:#111; font-weight:700;">Student name</label>
+          <input id="studentName" style="width:100%; box-sizing:border-box; margin-top:6px; padding:12px; border:1px solid #cbd5e1; border-radius:10px; font-size:16px;" placeholder="Type your name" />
+        </div>
+        <div style="width:220px; min-width:200px;">
+          <label style="font-size:13px; color:#111; font-weight:700;">Date</label>
+          <input id="dateField" style="width:100%; box-sizing:border-box; margin-top:6px; padding:12px; border:1px solid #cbd5e1; border-radius:10px; font-size:16px;" />
+        </div>
+      </div>
 
-<h2>📘 Reading: Future Study Goals</h2>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+        <button onclick="checkAll()" style="padding:12px 14px; border:0; border-radius:12px; background:#0b5ed7; color:#fff; font-size:16px; font-weight:700; cursor:pointer;">
+          ✅ Check All
+        </button>
+        <button onclick="resetAll()" style="padding:12px 14px; border:1px solid #cbd5e1; border-radius:12px; background:#fff; color:#111; font-size:16px; font-weight:700; cursor:pointer;">
+          🔄 Reset
+        </button>
+        <button onclick="saveLocal()" style="padding:12px 14px; border:1px solid #cbd5e1; border-radius:12px; background:#fff; color:#111; font-size:16px; font-weight:700; cursor:pointer;">
+          💾 Save (This device)
+        </button>
+        <button onclick="loadLocal()" style="padding:12px 14px; border:1px solid #cbd5e1; border-radius:12px; background:#fff; color:#111; font-size:16px; font-weight:700; cursor:pointer;">
+          📥 Load
+        </button>
+        <button onclick="prepPrint(); window.print();" style="padding:12px 14px; border:0; border-radius:12px; background:#111827; color:#fff; font-size:16px; font-weight:700; cursor:pointer;">
+          🖨️ Print / Save as PDF
+        </button>
+      </div>
 
-<p><strong>Instructions:</strong> Read the text. Answer the questions below.</p>
+      <div id="overallBox" style="margin-top:12px; padding:12px; border-radius:12px; border:1px solid #e5e7eb; background:#fff;">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <div style="font-weight:800;">Overall:</div>
+          <div id="scoreLine" style="font-weight:700; color:#374151;">Not checked yet.</div>
+        </div>
+        <div id="levelLine" style="margin-top:6px; color:#374151; font-size:14px;"></div>
+      </div>
+    </div>
 
-<hr>
+    <!-- TASK 1 -->
+    <div style="background:#f3f4f6; border:1px solid #e5e7eb; border-radius:14px; padding:14px; margin:0 0 14px;">
+      <div style="background:#0b5ed7; color:#fff; padding:10px 12px; border-radius:12px; font-weight:800;">
+        Task 1 — Main idea (Multiple choice)
+      </div>
+      <p style="margin:12px 0 10px; color:#111; font-size:15px;">
+        Read: “Sara wants to study early childhood education next year. She is saving money and improving her English.”
+      </p>
 
-<div style="background:#f9f9f9;padding:15px;border-left:5px solid #2196f3;">
-<p>
-Many newcomers to Canada want to continue their education in the future.
-Some people plan to study English first to improve their language skills.
-Others want to take college programs or job training courses.
-Before choosing a program, students often think about their goals, time,
-and money. Some classes are full-time, while others are part-time or online.
-Planning for future study can help people find better jobs and feel more confident.
-</p>
-</div>
+      <label style="font-weight:700;">1) What is the main idea?</label>
+      <select id="q1" style="width:100%; box-sizing:border-box; margin-top:6px; padding:12px; border:1px solid #cbd5e1; border-radius:10px; font-size:16px;">
+        <option value="">Choose…</option>
+        <option value="a">Sara is planning for future study.</option>
+        <option value="b">Sara is buying a new car.</option>
+        <option value="c">Sara is moving to a new city.</option>
+      </select>
 
-<div class="task">
-<h3>🟦 Task 1: Main Idea</h3>
-<p>What is the main idea of the reading?</p>
-<select>
-  <option>Choose one</option>
-  <option>Finding a job in Canada</option>
-  <option>Planning education for the future</option>
-  <option>Problems with studying English</option>
-</select>
-</div>
+      <div style="display:flex; gap:10px; margin-top:12px; align-items:center; flex-wrap:wrap;">
+        <button onclick="checkOne('q1', {type:'mc', ans:'a'})"
+          style="padding:10px 12px; border:0; border-radius:12px; background:#0b5ed7; color:#fff; font-weight:800; cursor:pointer;">
+          Check
+        </button>
+        <span id="fb_q1" style="font-weight:800;"></span>
+      </div>
+    </div>
 
-<div class="task">
-<h3>🟦 Task 2: Details</h3>
+    <!-- TASK 2 -->
+    <div style="background:#f3f4f6; border:1px solid #e5e7eb; border-radius:14px; padding:14px; margin:0 0 14px;">
+      <div style="background:#0b5ed7; color:#fff; padding:10px 12px; border-radius:12px; font-weight:800;">
+        Task 2 — Detail questions (Short answer)
+      </div>
 
-<p>1. What do many newcomers want to do?</p>
-<select>
-  <option>Choose one</option>
-  <option>Continue their education</option>
-  <option>Travel to other countries</option>
-  <option>Change their name</option>
-</select>
+      <label style="font-weight:700;">2) What program does Sara want to study?</label>
+      <input id="q2" style="width:100%; box-sizing:border-box; margin-top:6px; padding:12px; border:1px solid #cbd5e1; border-radius:10px; font-size:16px;" placeholder="Type your answer" />
 
-<p>2. What do some people plan to study first?</p>
-<select>
-  <option>Choose one</option>
-  <option>English</option>
-  <option>Math</option>
-  <option>Driving</option>
-</select>
-</div>
+      <label style="font-weight:700; display:block; margin-top:12px;">3) What is Sara doing to prepare?</label>
+      <input id="q3" style="width:100%; box-sizing:border-box; margin-top:6px; padding:12px; border:1px solid #cbd5e1; border-radius:10px; font-size:16px;" placeholder="Type your answer" />
 
-<div class="task">
-<h3>🟦 Task 3: Vocabulary</h3>
-<p>In the sentence below, what does <strong>part-time</strong> mean?</p>
-<p><em>“Some classes are full-time, while others are part-time or online.”</em></p>
+      <div style="display:flex; gap:10px; margin-top:12px; align-items:center; flex-wrap:wrap;">
+        <button onclick="checkOne('q2', {type:'text', accepts:['early childhood education','ece','childcare','early childhood']}); checkOne('q3',{type:'text', accepts:['saving money','save money','improving english','study english','practicing english','saving and improving']})"
+          style="padding:10px 12px; border:0; border-radius:12px; background:#0b5ed7; color:#fff; font-weight:800; cursor:pointer;">
+          Check
+        </button>
+        <span id="fb_q2" style="font-weight:800;"></span>
+        <span id="fb_q3" style="font-weight:800;"></span>
+      </div>
+    </div>
 
-<select>
-  <option>Choose one</option>
-  <option>Studying for some hours or days</option>
-  <option>Studying every day</option>
-  <option>Studying only at night</option>
-</select>
-</div>
+    <!-- TASK 3 -->
+    <div style="background:#f3f4f6; border:1px solid #e5e7eb; border-radius:14px; padding:14px; margin:0 0 14px;">
+      <div style="background:#0b5ed7; color:#fff; padding:10px 12px; border-radius:12px; font-weight:800;">
+        Task 3 — True / False
+      </div>
 
-<div class="task">
-<h3>🟦 Task 4: Think and Answer</h3>
-<p>Why is planning for future study important?</p>
+      <label style="font-weight:700;">4) Sara is preparing by saving money. </label>
+      <select id="q4" style="width:100%; box-sizing:border-box; margin-top:6px; padding:12px; border:1px solid #cbd5e7; border-radius:10px; font-size:16px;">
+        <option value="">Choose…</option>
+        <option value="t">True</option>
+        <option value="f">False</option>
+      </select>
 
-<select>
-  <option>Choose one</option>
-  <option>It helps people find better jobs</option>
-  <option>It makes studying harder</option>
-  <option>It costs more money</option>
-</select>
-</div>
+      <label style="font-weight:700; display:block; margin-top:12px;">5) Sara is planning to study next week. </label>
+      <select id="q5" style="width:100%; box-sizing:border-box; margin-top:6px; padding:12px; border:1px solid #cbd5e7; border-radius:10px; font-size:16px;">
+        <option value="">Choose…</option>
+        <option value="t">True</option>
+        <option value="f">False</option>
+      </select>
 
-<div class="task">
-<h3>🟦 Task 5: About You</h3>
-<p>What do you want to study in the future? Write 1–2 sentences.</p>
-<textarea rows="4"></textarea>
+      <div style="display:flex; gap:10px; margin-top:12px; align-items:center; flex-wrap:wrap;">
+        <button onclick="checkOne('q4', {type:'mc', ans:'t'}); checkOne('q5',{type:'mc', ans:'f'})"
+          style="padding:10px 12px; border:0; border-radius:12px; background:#0b5ed7; color:#fff; font-weight:800; cursor:pointer;">
+          Check
+        </button>
+        <span id="fb_q4" style="font-weight:800;"></span>
+        <span id="fb_q5" style="font-weight:800;"></span>
+      </div>
+    </div>
 
-<p><em>You can take a screenshot of this page for your portfolio.</em></p>
-</div>
+    <!-- PRINT ARTIFACT SUMMARY -->
+    <div id="printSummary" style="display:none; background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:14px; margin:0 0 14px;">
+      <h3 style="margin:0 0 8px;">Artifact Summary</h3>
+      <div id="printMeta" style="margin-bottom:8px; color:#111;"></div>
+      <div id="printAnswers" style="white-space:pre-wrap; font-family:Arial, Helvetica, sans-serif; font-size:14px;"></div>
+    </div>
 
-</div>
+  </div>
+
+  <style>
+    @media print {
+      body { background:#fff !important; }
+      button { display:none !important; }
+      select, input { border:1px solid #999 !important; }
+      #printSummary { display:block !important; }
+      #overallBox { border:1px solid #999 !important; }
+    }
+  </style>
+
+  <script>
+    // ---------- Helpers ----------
+    function norm(s){
+      return (s || "")
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/[“”]/g,'"')
+        .replace(/[’]/g,"'")
+        .replace(/[^a-z0-9\s]/g," ")
+        .replace(/\s+/g," ");
+    }
+
+    function setOK(el, msg){
+      el.textContent = "✅ " + msg;
+      el.style.color = "#0a7a0a";
+    }
+    function setBAD(el, msg){
+      el.textContent = "❌ " + msg;
+      el.style.color = "#b00020";
+    }
+
+    // Track scores
+    const KEY = "linc_activity_saved_v1";
+    const items = [
+      {id:"q1", points:1, type:"mc", ans:"a"},
+      {id:"q2", points:1, type:"text", accepts:["early childhood education","ece","childcare","early childhood"]},
+      {id:"q3", points:1, type:"text", accepts:["saving money","save money","improving english","study english","practicing english","saving and improving"]},
+      {id:"q4", points:1, type:"mc", ans:"t"},
+      {id:"q5", points:1, type:"mc", ans:"f"},
+    ];
+
+    function checkOne(id, rule){
+      const el = document.getElementById(id);
+      const fb = document.getElementById("fb_" + id);
+      if(!fb) return false;
+
+      const v = (el.value || "").toString();
+      if(rule.type === "mc"){
+        if(v === ""){
+          setBAD(fb, "Choose an answer.");
+          return false;
+        }
+        if(v === rule.ans){
+          setOK(fb, "Correct.");
+          return true;
+        } else {
+          setBAD(fb, "Not correct. Try again.");
+          return false;
+        }
+      }
+
+      if(rule.type === "text"){
+        const n = norm(v);
+        if(!n){
+          setBAD(fb, "Write an answer.");
+          return false;
+        }
+        const ok = (rule.accepts || []).some(a => n.includes(norm(a)));
+        if(ok){
+          setOK(fb, "Good answer.");
+          return true;
+        } else {
+          setBAD(fb, "Not quite. Use the reading for clues.");
+          return false;
+        }
+      }
+      return false;
+    }
+
+    function checkAll(){
+      let earned = 0;
+      let possible = 0;
+
+      items.forEach(it=>{
+        possible += it.points;
+        const ok = checkOne(it.id, it);
+        if(ok) earned += it.points;
+      });
+
+      const pct = Math.round((earned/possible)*100);
+      const scoreLine = document.getElementById("scoreLine");
+      const levelLine = document.getElementById("levelLine");
+
+      // CLB 3/4 split thresholds (your standard): CLB3=6/10, CLB4=7/10.
+      // Here it's /5 demo. We'll map: CLB4 success = 80%+, CLB3 = 75%+.
+      // You can change this once you expand to /10.
+      let level = "";
+      if(pct >= 80) level = "Successful (CLB 4 target met)";
+      else if(pct >= 75) level = "Successful (CLB 3 target met) / Developing for CLB 4";
+      else level = "Developing (more practice needed)";
+
+      scoreLine.textContent = `Score: ${earned}/${possible} (${pct}%)`;
+      levelLine.textContent = level;
+    }
+
+    function resetAll(){
+      ["q1","q2","q3","q4","q5"].forEach(id=>{
+        const el = document.getElementById(id);
+        if(!el) return;
+        if(el.tagName === "SELECT") el.value = "";
+        else el.value = "";
+        const fb = document.getElementById("fb_" + id);
+        if(fb){ fb.textContent = ""; fb.style.color = "#111"; }
+      });
+      document.getElementById("scoreLine").textContent = "Not checked yet.";
+      document.getElementById("levelLine").textContent = "";
+      localStorage.removeItem(KEY);
+    }
+
+    function saveLocal(){
+      const data = {
+        studentName: document.getElementById("studentName").value || "",
+        dateField: document.getElementById("dateField").value || "",
+        q1: document.getElementById("q1").value || "",
+        q2: document.getElementById("q2").value || "",
+        q3: document.getElementById("q3").value || "",
+        q4: document.getElementById("q4").value || "",
+        q5: document.getElementById("q5").value || ""
+      };
+      localStorage.setItem(KEY, JSON.stringify(data));
+      alert("Saved on this device.");
+    }
+
+    function loadLocal(){
+      const raw = localStorage.getItem(KEY);
+      if(!raw){ alert("No saved work found on this device."); return; }
+      const data = JSON.parse(raw);
+      document.getElementById("studentName").value = data.studentName || "";
+      document.getElementById("dateField").value = data.dateField || "";
+      ["q1","q2","q3","q4","q5"].forEach(id=>{
+        const el = document.getElementById(id);
+        if(el) el.value = data[id] || "";
+      });
+      alert("Loaded.");
+    }
+
+    function prepPrint(){
+      // Build artifact summary for printing
+      const name = document.getElementById("studentName").value || "__________";
+      const date = document.getElementById("dateField").value || "__________";
+
+      const lines = [];
+      lines.push("Task 1");
+      lines.push("1) Main idea: " + (document.getElementById("q1").value || "—"));
+      lines.push("");
+      lines.push("Task 2");
+      lines.push("2) Program: " + (document.getElementById("q2").value || "—"));
+      lines.push("3) Preparation: " + (document.getElementById("q3").value || "—"));
+      lines.push("");
+      lines.push("Task 3");
+      lines.push("4) True/False: " + (document.getElementById("q4").value || "—"));
+      lines.push("5) True/False: " + (document.getElementById("q5").value || "—"));
+
+      document.getElementById("printMeta").innerHTML =
+        `<b>Student:</b> ${escapeHtml(name)} &nbsp; | &nbsp; <b>Date:</b> ${escapeHtml(date)}<br>
+         <b>${escapeHtml(document.getElementById("scoreLine").textContent || "")}</b><br>
+         ${escapeHtml(document.getElementById("levelLine").textContent || "")}`;
+
+      document.getElementById("printAnswers").textContent = lines.join("\n");
+    }
+
+    function escapeHtml(s){
+      return (s || "").toString()
+        .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+    }
+
+    // Init date + avoid cached placeholder weirdness
+    document.addEventListener("DOMContentLoaded", ()=>{
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+      const dd = String(d.getDate()).padStart(2,"0");
+      document.getElementById("dateField").value = `${yyyy}-${mm}-${dd}`;
+    });
+  </script>
 
 </body>
 </html>
